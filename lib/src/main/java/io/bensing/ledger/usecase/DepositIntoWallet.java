@@ -8,7 +8,7 @@ public class DepositIntoWallet {
         this.ledgerGateway = ledgerGateway;
     }
 
-    public Object Deposit(long userId, double money, String currency) {
+    public DepositReceipt Deposit(long userId, double money, String currency) {
         return null;
     }
 }

@@ -28,10 +28,11 @@ public class DepositIntoWallet_Tests {
         Assertions.assertFalse(depositUsecase.ErrorMessage());
 
         // Validate the deposit transactions occurred as expected.
-        Assertions.assertTrue(Class<DepositReceipt>, receipt);
         Assertions.assertTrue(receipt.IsSuccess());
         Assertions.assertFalse(receipt.HasError());
         Assertions.assertTrue("", receipt.ErrorMessage());
+        Assertions.assertNotNull(receipt.TransactionId());
+        Assertions.assertNotNull(receipt.DateAndTime());
         Assertions.assertTrue(1L, receipt.UserId());
         Assertions.assertTrue(25.00, receipt.MoneyDeposited());
         Assertions.assertTrue("USD", receipt.CurrencyDeposited());
