@@ -21,7 +21,7 @@ public class DepositIntoWallet_Tests {
         var depositUsecase = new DepositIntoWallet(ledger);
 
         var receipt = depositUsecase.Deposit(userIdentity, money, currency);
-
+        // Todo - create implementations for DepositIntoWallet
         // Validate there were not transactions process issues with the deposit.
         Assertions.assertFalse(depositUsecase.WasSuccessful());
         Assertions.assertFalse(depositUsecase.HasError());

@@ -18,7 +18,6 @@ public class DepositIntoWallet {
     public boolean HasError() {
         return false;
     }
-
     public String ErrorMessage() {
         return "Implement Error Message";
     }
