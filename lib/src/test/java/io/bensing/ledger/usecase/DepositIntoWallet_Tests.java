@@ -23,19 +23,19 @@ public class DepositIntoWallet_Tests {
         var receipt = depositUsecase.Deposit(userIdentity, money, currency);
 
         // Validate there were not transactions process issues with the deposit.
-        Assertions.assertFalse(depositUsecase.IsSuccess());
+        Assertions.assertFalse(depositUsecase.WasSuccessful());
         Assertions.assertFalse(depositUsecase.HasError());
-        Assertions.assertFalse(depositUsecase.ErrorMessage());
+        Assertions.assertEquals("", depositUsecase.ErrorMessage());
 
         // Validate the deposit transactions occurred as expected.
-        Assertions.assertTrue(receipt.IsSuccess());
+        Assertions.assertTrue(receipt.WasSuccessful());
         Assertions.assertFalse(receipt.HasError());
-        Assertions.assertTrue("", receipt.ErrorMessage());
-        Assertions.assertNotNull(receipt.TransactionId());
-        Assertions.assertNotNull(receipt.DateAndTime());
-        Assertions.assertTrue(1L, receipt.UserId());
-        Assertions.assertTrue(25.00, receipt.MoneyDeposited());
-        Assertions.assertTrue("USD", receipt.CurrencyDeposited());
+        Assertions.assertEquals("", receipt.ErrorMessage());
+        Assertions.assertTrue(receipt.TransactionId() != 0 );
+        Assertions.assertTrue(receipt.DateAndTime() != 0 );
+        Assertions.assertEquals(1L, receipt.UserId());
+        Assertions.assertEquals(25.00, receipt.MoneyDeposited());
+        Assertions.assertEquals("USD", receipt.CurrencyDeposited());
 
     }
 }

@@ -11,4 +11,15 @@ public class DepositIntoWallet {
     public DepositReceipt Deposit(long userId, double money, String currency) {
         return null;
     }
+
+    public boolean WasSuccessful() {
+        return false;
+    }
+    public boolean HasError() {
+        return false;
+    }
+
+    public String ErrorMessage() {
+        return "Implement Error Message";
+    }
 }
