@@ -8,7 +8,6 @@ public class Deposit implements Outcome {
     private final DepositGateway depositGateway;
     private Outcome outcome;
 
-    // TODO - ** LEFT OFF ** | Organize and commit changes to date.
     // TODO - Add an IdentityGateway to the constructor arguments.
     public Deposit(DepositGateway depositGateway) {
         this.depositGateway = depositGateway;
