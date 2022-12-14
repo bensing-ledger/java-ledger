@@ -16,26 +16,40 @@ public class DepositIntoWallet_Tests {
         double money = 25.00;
         String currency = "USD";
 
-        var ledger = new LedgerGatewayMock();
+        var ledger = new DepositGatewayMock(2L, 1670931513);
+        var usecase = new DepositIntoWallet(ledger);
 
-        var depositUsecase = new DepositIntoWallet(ledger);
+        var receipt = usecase.Deposit(userIdentity, money, currency);
 
-        var receipt = depositUsecase.Deposit(userIdentity, money, currency);
-        // Todo - create implementations for DepositIntoWallet
         // Validate there were not transactions process issues with the deposit.
-        Assertions.assertFalse(depositUsecase.WasSuccessful());
-        Assertions.assertFalse(depositUsecase.HasError());
-        Assertions.assertEquals("", depositUsecase.ErrorMessage());
+        Assertions.assertTrue(usecase.WasSuccessful());
+        Assertions.assertFalse(usecase.HasError());
+        Assertions.assertEquals("", usecase.ErrorMessage());
 
         // Validate the deposit transactions occurred as expected.
+        // Check outcome of deposit transaction
         Assertions.assertTrue(receipt.WasSuccessful());
         Assertions.assertFalse(receipt.HasError());
         Assertions.assertEquals("", receipt.ErrorMessage());
-        Assertions.assertTrue(receipt.TransactionId() != 0 );
-        Assertions.assertTrue(receipt.DateAndTime() != 0 );
+
+        // Check receipt data
+        Assertions.assertEquals(2L, receipt.TransactionId());
+        Assertions.assertEquals(1670931513, receipt.DateAndTime());
         Assertions.assertEquals(1L, receipt.UserId());
         Assertions.assertEquals(25.00, receipt.MoneyDeposited());
         Assertions.assertEquals("USD", receipt.CurrencyDeposited());
 
     }
+
+//    TODO - Implement a Handle DepositGateway Error
+//    @Test
+//    @Tag("Small")
+//    @DisplayName("Handle DepositGateway Error")
+//    void HandleDepositGatewayError { }
+
+//    Testing Template - Small Tests
+//    @Test
+//    @Tag("Small")
+//    @DisplayName("Handle DepositGateway Error")
+//    void HandleDepositGatewayError { }
 }

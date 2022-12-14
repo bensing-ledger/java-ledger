@@ -1,24 +1,37 @@
 package io.bensing.ledger.usecase;
 
-public class DepositIntoWallet {
+import io.bensing.kernel.Outcome;
+import io.bensing.kernel.SuccessfulOutcome;
 
-    private LedgerGateway ledgerGateway;
+public class DepositIntoWallet implements Outcome {
 
-    public DepositIntoWallet(LedgerGateway ledgerGateway) {
-        this.ledgerGateway = ledgerGateway;
+    private final DepositGateway depositGateway;
+    private Outcome outcome;
+
+    // TODO - ** LEFT OFF ** | Organize and commit changes to date.
+    // TODO - Add an IdentityGateway to the constructor arguments.
+    public DepositIntoWallet(DepositGateway depositGateway) {
+        this.depositGateway = depositGateway;
     }
 
     public DepositReceipt Deposit(long userId, double money, String currency) {
-        return null;
+        var gatewayResponse = this.depositGateway.Deposit(userId, money, currency);
+        this.outcome = new SuccessfulOutcome();
+        return new DepositReceipt(
+                gatewayResponse.TransactionId(),
+                gatewayResponse.DateAndTime(),
+                userId,
+                money,
+                currency);
     }
 
     public boolean WasSuccessful() {
-        return false;
+        return outcome.WasSuccessful();
     }
     public boolean HasError() {
-        return false;
+        return outcome.HasError();
     }
     public String ErrorMessage() {
-        return "Implement Error Message";
+        return outcome.ErrorMessage();
     }
 }
