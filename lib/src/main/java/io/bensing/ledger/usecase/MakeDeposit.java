@@ -8,6 +8,8 @@ public class MakeDeposit implements Outcome {
     private final DepositGateway depositGateway;
     private Outcome outcome;
 
+    // TODO - Add io.bensing.kernel to POM
+    // TODO - Replace this Outcomes references with io.bensing.kernel package Outcomes
     // TODO - Add an IdentityGateway to the constructor arguments.
     public MakeDeposit(DepositGateway depositGateway) {
         this.depositGateway = depositGateway;
