@@ -5,7 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-public class DepositIntoWallet_Tests {
+public class Deposit_Tests {
 
     @Test
     @Tag("Small")
@@ -17,7 +17,7 @@ public class DepositIntoWallet_Tests {
         String currency = "USD";
 
         var ledger = new DepositGatewayMock(2L, 1670931513);
-        var usecase = new DepositIntoWallet(ledger);
+        var usecase = new Deposit(ledger);
 
         var receipt = usecase.Deposit(userIdentity, money, currency);
 
