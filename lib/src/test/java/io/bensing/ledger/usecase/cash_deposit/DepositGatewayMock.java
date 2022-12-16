@@ -1,7 +1,4 @@
-package io.bensing.ledger.usecase.make_deposit;
-
-import io.bensing.ledger.usecase.make_deposit.DepositGateway;
-import io.bensing.ledger.usecase.make_deposit.DepositGatewayResponse;
+package io.bensing.ledger.usecase.cash_deposit;
 
 import java.time.Instant;
 

@@ -1,4 +1,4 @@
-package io.bensing.ledger.usecase.make_deposit;
+package io.bensing.ledger.usecase.cash_deposit;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
