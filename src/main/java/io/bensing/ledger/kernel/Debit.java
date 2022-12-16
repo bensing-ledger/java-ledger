@@ -6,14 +6,14 @@ public class Debit {
 
     private String description;
     private Id transactionId;
-    private long accountNumber;
+    private Account account;
     private double amount;
     private long dateAndTime;
 
-    public Debit(String description, Id transactionId, long accountNumber, double amount, long dateAndTime) {
+    public Debit(String description, Id transactionId, Account account, double amount, long dateAndTime) {
         this.description = description;
         this.transactionId = transactionId;
-        this.accountNumber = accountNumber;
+        this.account = account;
         this.amount = amount;
         this.dateAndTime = dateAndTime;
     }
@@ -26,8 +26,8 @@ public class Debit {
         return this.transactionId;
     }
 
-    public long AccountNumber() {
-        return this.accountNumber;
+    public Account Account() {
+        return this.account;
     }
 
     public double Amount() {

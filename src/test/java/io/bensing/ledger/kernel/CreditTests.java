@@ -15,15 +15,15 @@ public class CreditTests {
     public void CreateDebit() {
         String description = "Transfer into account 1234";
         var transactionId = new Id(1234234534);
-        long accountNumber = 1234;
+        var account = new Account(1234);
         double amount = 25.00;
         long dateAndTime = 223423453;
 
-        var debit = new Debit(description, transactionId, accountNumber, amount, dateAndTime);
+        var debit = new Debit(description, transactionId, account, amount, dateAndTime);
 
         Assertions.assertEquals("Transfer into account 1234", debit.Description());
         Assertions.assertEquals(1234234534, debit.TransactionId().Value());
-        Assertions.assertEquals(1234, debit.AccountNumber());
+        Assertions.assertEquals(1234, debit.Account().Value());
         Assertions.assertEquals(25.00, debit.Amount());
         Assertions.assertEquals(223423453, debit.DateAndTime());
     }

@@ -1,6 +1,7 @@
 package io.bensing.ledger.usecase.deposit;
 
 import io.bensing.kernel.identity.Id;
+import io.bensing.ledger.kernel.Account;
 import io.bensing.ledger.kernel.Credit;
 import io.bensing.ledger.kernel.Debit;
 import io.bensing.ledger.usecase.chart_of_accounts.UserWalletAccountGateway;
@@ -15,7 +16,7 @@ import java.time.Instant;
 
 public class CashDeposit implements Outcome {
 
-    private final long cashAccountNumber = 101;
+    private final Account cashAccount = new Account(101);
     private final LedgerGateway ledgerGateway;
     private final UserWalletAccountGateway userWalletAccountGateway;
     private final IdentityGateway identityGateway;
@@ -30,10 +31,10 @@ public class CashDeposit implements Outcome {
     public DepositReceipt Deposit(long userId, double money, String currency) {
         var transactionId = this.identityGateway.GenerateId();
         var transactionDateAndTime = Instant.now().toEpochMilli();
-        var userWalletAccount = this.userWalletAccountGateway.RetrieveAccountNumber(userId);
+        var userWalletAccount = this.userWalletAccountGateway.RetrieveAccount(userId);
         var description = "Cash deposit into user waller " + userWalletAccount;
         var userWalletCredit = new Credit(description, transactionId, userWalletAccount, money, transactionDateAndTime);
-        var cashAccountDebit = new Debit(description, transactionId, this.cashAccountNumber, money, transactionDateAndTime);
+        var cashAccountDebit = new Debit(description, transactionId, this.cashAccount, money, transactionDateAndTime);
 
         var ledgerResponse = this.ledgerGateway.MakeEntry(cashAccountDebit, userWalletCredit);
 
