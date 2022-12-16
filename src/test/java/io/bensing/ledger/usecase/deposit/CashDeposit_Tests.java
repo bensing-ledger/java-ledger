@@ -3,7 +3,7 @@ package io.bensing.ledger.usecase.deposit;
 import io.bensing.kernel.SuccessfulOutcome;
 import io.bensing.kernel.UnsuccessfulOutcome;
 import io.bensing.kernel.identity.Id;
-import io.bensing.kernel.identity.IdentityGatewayMock;
+import io.bensing.ledger.IdentityGatewayMock;
 import io.bensing.ledger.usecase.chart_of_accounts.UserWalletAccountGatewayMock;
 import io.bensing.ledger.kernel.LedgerGatewayMock;
 import org.junit.jupiter.api.Assertions;
