@@ -1,4 +1,4 @@
-package io.bensing.ledger.usecase.cash_deposit;
+package io.bensing.ledger.usecase.deposit;
 
 import io.bensing.kernel.Outcome;
 import io.bensing.kernel.SuccessfulOutcome;
