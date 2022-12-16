@@ -15,6 +15,7 @@ plugins {
 
 repositories {
     // Use Maven Central for resolving dependencies.
+    mavenLocal()
     mavenCentral()
     maven {
         url "https://maven.pkg.github.com/bensing-kernel/java-kernel"
