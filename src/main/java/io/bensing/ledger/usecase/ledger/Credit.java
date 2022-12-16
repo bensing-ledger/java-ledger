@@ -1,14 +1,16 @@
 package io.bensing.ledger.usecase.ledger;
 
+import io.bensing.kernel.identity.Id;
+
 public class Credit {
 
     private String description;
-    private long transactionId;
+    private Id transactionId;
     private long accountNumber;
     private double amount;
     private long dateAndTime;
 
-    public Credit(String description, long transactionId, long accountNumber, double amount, long dateAndTime) {
+    public Credit(String description, Id transactionId, long accountNumber, double amount, long dateAndTime) {
         this.description = description;
         this.transactionId = transactionId;
         this.accountNumber = accountNumber;
@@ -20,7 +22,7 @@ public class Credit {
         return this.description;
     }
 
-    public long TransactionId() {
+    public Id TransactionId() {
         return this.transactionId;
     }
 

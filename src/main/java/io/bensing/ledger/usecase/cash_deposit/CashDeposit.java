@@ -1,6 +1,6 @@
 package io.bensing.ledger.usecase.cash_deposit;
 
-import io.bensing.ledger.usecase.IdentityGateway;
+import io.bensing.kernel.identity.Id;
 import io.bensing.ledger.usecase.ledger.Credit;
 import io.bensing.ledger.usecase.ledger.Debit;
 import io.bensing.ledger.usecase.chart_of_accounts.UserWalletAccountGateway;
@@ -9,6 +9,7 @@ import io.bensing.ledger.usecase.ledger.LedgerGateway;
 import io.bensing.kernel.Outcome;
 import io.bensing.kernel.SuccessfulOutcome;
 import io.bensing.kernel.UnsuccessfulOutcome;
+import io.bensing.kernel.identity.IdentityGateway;
 
 import java.time.Instant;
 
@@ -40,7 +41,7 @@ public class CashDeposit implements Outcome {
 
     }
 
-    private DepositReceipt createReceipt(long userId, double money, String currency, long transactionId, long transactionDateAndTime, Outcome ledgerResponse) {
+    private DepositReceipt createReceipt(long userId, double money, String currency, Id transactionId, long transactionDateAndTime, Outcome ledgerResponse) {
         DepositReceipt receipt;
         if (ledgerResponse.WasSuccessful()) {
             this.outcome = new SuccessfulOutcome();

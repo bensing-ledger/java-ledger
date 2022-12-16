@@ -3,10 +3,11 @@ package io.bensing.ledger.usecase.cash_deposit;
 import io.bensing.kernel.Outcome;
 import io.bensing.kernel.SuccessfulOutcome;
 import io.bensing.kernel.UnsuccessfulOutcome;
+import io.bensing.kernel.identity.Id;
 
 public class DepositReceipt implements Outcome {
 
-    private long transactionId = 0L;
+    private Id transactionId;
     private long datAndTime = 0L;
     private long userId = 0L;
     private double money = 00.00;
@@ -22,7 +23,7 @@ public class DepositReceipt implements Outcome {
      * @param money The amount of money the transaction was for
      * @param currency The currency of the money for the transaction
      */
-    public DepositReceipt(long transactionId, long dateAndTime, long userId, double money, String currency) {
+    public DepositReceipt(Id transactionId, long dateAndTime, long userId, double money, String currency) {
         this.transactionId = transactionId;
         this.datAndTime = dateAndTime;
         this.userId = userId;
@@ -40,7 +41,7 @@ public class DepositReceipt implements Outcome {
      * @param money The amount of money the transaction was for
      * @param currency The currency of the money for the transaction
      */
-    public DepositReceipt(long transactionId, long dateAndTime, long userId, double money, String currency, String errorMessage) {
+    public DepositReceipt(Id transactionId, long dateAndTime, long userId, double money, String currency, String errorMessage) {
         this.transactionId = transactionId;
         this.datAndTime = dateAndTime;
         this.userId = userId;
@@ -49,7 +50,7 @@ public class DepositReceipt implements Outcome {
         this.outcome = new UnsuccessfulOutcome(errorMessage);
     }
 
-    public long TransactionId() {
+    public Id TransactionId() {
         return this.transactionId;
     }
 

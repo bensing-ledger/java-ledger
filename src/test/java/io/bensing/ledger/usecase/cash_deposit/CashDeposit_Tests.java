@@ -2,6 +2,7 @@ package io.bensing.ledger.usecase.cash_deposit;
 
 import io.bensing.kernel.SuccessfulOutcome;
 import io.bensing.kernel.UnsuccessfulOutcome;
+import io.bensing.kernel.identity.Id;
 import io.bensing.kernel.identity.IdentityGatewayMock;
 import io.bensing.ledger.usecase.chart_of_accounts.UserWalletAccountGatewayMock;
 import io.bensing.ledger.usecase.ledger.LedgerGatewayMock;
@@ -21,7 +22,7 @@ public class CashDeposit_Tests {
         double money = 25.00;
         String currency = "USD";
 
-        var identityGateway = new IdentityGatewayMock(2L);
+        var identityGateway = new IdentityGatewayMock(new Id(2L));
         var userWalletAccountGateway = new UserWalletAccountGatewayMock(234232342);
         var ledgerGateway = new LedgerGatewayMock(new SuccessfulOutcome());
         var usecase = new CashDeposit(identityGateway, userWalletAccountGateway, ledgerGateway);
@@ -40,7 +41,7 @@ public class CashDeposit_Tests {
         Assertions.assertEquals("", receipt.ErrorMessage());
 
         // Check receipt data
-        Assertions.assertEquals(2L, receipt.TransactionId());
+        Assertions.assertEquals(2L, receipt.TransactionId().Value());
         receipt.DateAndTime();
         Assertions.assertEquals(1L, receipt.UserId());
         Assertions.assertEquals(25.00, receipt.MoneyDeposited());
@@ -57,7 +58,7 @@ public class CashDeposit_Tests {
         double money = 25.00;
         String currency = "USD";
 
-        var identityGateway = new IdentityGatewayMock(2L);
+        var identityGateway = new IdentityGatewayMock(new Id(2L));
         var userWalletAccountGateway = new UserWalletAccountGatewayMock(234232342);
         var ledgerGateway = new LedgerGatewayMock(new UnsuccessfulOutcome("Some issue with ledger."));
         var usecase = new CashDeposit(identityGateway, userWalletAccountGateway, ledgerGateway);
@@ -76,7 +77,7 @@ public class CashDeposit_Tests {
         Assertions.assertEquals("There was an issue making the deposit. Please try again.", receipt.ErrorMessage());
 
         // Check receipt data
-        Assertions.assertEquals(2L, receipt.TransactionId());
+        Assertions.assertEquals(2L, receipt.TransactionId().Value());
         receipt.DateAndTime();
         Assertions.assertEquals(1L, receipt.UserId());
         Assertions.assertEquals(25.00, receipt.MoneyDeposited());

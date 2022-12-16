@@ -1,16 +1,14 @@
 package io.bensing.kernel.identity;
 
-import io.bensing.ledger.usecase.IdentityGateway;
-
 public class IdentityGatewayMock implements IdentityGateway {
-    private final long expectedId;
+    private final Id expectedId;
 
-    public IdentityGatewayMock(long expectedId) {
+    public IdentityGatewayMock(Id expectedId) {
         this.expectedId = expectedId;
     }
 
     @Override
-    public long GenerateId() {
+    public Id GenerateId() {
         return this.expectedId;
     }
 }
