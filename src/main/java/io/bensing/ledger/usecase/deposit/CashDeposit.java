@@ -28,11 +28,13 @@ public class CashDeposit implements Outcome {
         this.ledgerGateway = ledgerGateway;
     }
 
+    // TODO - Create a CashDeposit slip as the argument for Deposit; add validations to it.
     public DepositReceipt Deposit(long userId, double money, String currency) {
         var transactionId = this.identityGateway.GenerateId();
         var transactionDateAndTime = Instant.now().toEpochMilli();
         var userWalletAccount = this.userWalletAccountGateway.RetrieveAccount(userId);
         var description = "Cash deposit into user waller " + userWalletAccount;
+        // TODO - Create a JournalEntry object that takes in the Debit, Credit, TransactionId, & Description
         var userWalletCredit = new Credit(description, transactionId, userWalletAccount, money, transactionDateAndTime);
         var cashAccountDebit = new Debit(description, transactionId, this.cashAccount, money, transactionDateAndTime);
 
