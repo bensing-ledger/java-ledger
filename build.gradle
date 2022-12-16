@@ -20,12 +20,6 @@ java {
 
 repositories {
     // Use Maven Central for resolving dependencies.
-    mavenLocal(){
-        metadataSources {
-            mavenPom()
-            artifact()
-        }
-    }
     mavenCentral()
     maven {
         url "https://us-east1-maven.pkg.dev/bensing-io/snapshots"
