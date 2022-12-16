@@ -1,7 +1,7 @@
 package io.bensing.kernel.ledger;
 
 import io.bensing.kernel.identity.Id;
-import io.bensing.ledger.usecase.ledger.Debit;
+import io.bensing.ledger.kernel.Debit;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

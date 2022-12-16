@@ -1,10 +1,10 @@
 package io.bensing.ledger.usecase.deposit;
 
 import io.bensing.kernel.identity.Id;
-import io.bensing.ledger.usecase.ledger.Credit;
-import io.bensing.ledger.usecase.ledger.Debit;
+import io.bensing.ledger.kernel.Credit;
+import io.bensing.ledger.kernel.Debit;
 import io.bensing.ledger.usecase.chart_of_accounts.UserWalletAccountGateway;
-import io.bensing.ledger.usecase.ledger.LedgerGateway;
+import io.bensing.ledger.kernel.LedgerGateway;
 
 import io.bensing.kernel.Outcome;
 import io.bensing.kernel.SuccessfulOutcome;

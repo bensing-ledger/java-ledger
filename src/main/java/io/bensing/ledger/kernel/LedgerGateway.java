@@ -1,4 +1,4 @@
-package io.bensing.ledger.usecase.ledger;
+package io.bensing.ledger.kernel;
 
 import io.bensing.kernel.Outcome;
 
