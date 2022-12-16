@@ -20,8 +20,6 @@ public class CashDeposit implements Outcome {
     private final IdentityGateway identityGateway;
     private Outcome outcome;
 
-    // TODO - Add io.bensing.kernel to POM
-    // TODO - Replace this Outcomes references with io.bensing.kernel package Outcomes
     public CashDeposit(IdentityGateway identityGateway, UserWalletAccountGateway userWalletAccountGateway, LedgerGateway ledgerGateway) {
         this.identityGateway = identityGateway;
         this.userWalletAccountGateway = userWalletAccountGateway;
