@@ -3,7 +3,7 @@ package io.bensing.ledger.usecase.cash_deposit;
 import io.bensing.kernel.Outcome;
 import io.bensing.kernel.SuccessfulOutcome;
 
-public class MakeDeposit implements Outcome {
+public class CashDeposit implements Outcome {
 
     private final DepositGateway depositGateway;
     private Outcome outcome;
@@ -11,7 +11,7 @@ public class MakeDeposit implements Outcome {
     // TODO - Add io.bensing.kernel to POM
     // TODO - Replace this Outcomes references with io.bensing.kernel package Outcomes
     // TODO - Add an IdentityGateway to the constructor arguments.
-    public MakeDeposit(DepositGateway depositGateway) {
+    public CashDeposit(DepositGateway depositGateway) {
         this.depositGateway = depositGateway;
     }
 
