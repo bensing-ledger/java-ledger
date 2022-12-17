@@ -1,14 +1,15 @@
 package io.bensing.ledger.kernel;
 
 import io.bensing.kernel.identity.Id;
+import io.bensing.kernel.interfaces.Comparable;
 
-public class Credit {
+public class Credit implements Comparable<Credit> {
 
-    private String description;
-    private Id transactionId;
-    private Account account;
-    private double amount;
-    private long dateAndTime;
+    private final String description;
+    private final Id transactionId;
+    private final Account account;
+    private final double amount;
+    private final long dateAndTime;
 
     public Credit(String description, Id transactionId, Account account, double amount, long dateAndTime) {
         this.description = description;
@@ -36,5 +37,15 @@ public class Credit {
 
     public long DateAndTime() {
         return this.dateAndTime;
+    }
+
+    @Override
+    public boolean Equals(Credit compareCredit) {
+        var desc = this.Description().equals(compareCredit.Description());
+        var transId = this.TransactionId().Equals(compareCredit.TransactionId());
+        var acct = this.Account().Equals(compareCredit.Account());
+        var amt = this.Amount() == compareCredit.Amount();
+        var dateTime = this.DateAndTime() == compareCredit.DateAndTime();
+        return desc && transId && acct && amt && dateTime;
     }
 }
