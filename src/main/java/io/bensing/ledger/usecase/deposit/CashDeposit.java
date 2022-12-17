@@ -1,11 +1,8 @@
 package io.bensing.ledger.usecase.deposit;
 
 import io.bensing.kernel.identity.Id;
-import io.bensing.ledger.kernel.Account;
-import io.bensing.ledger.kernel.Credit;
-import io.bensing.ledger.kernel.Debit;
+import io.bensing.ledger.kernel.*;
 import io.bensing.ledger.usecase.chart_of_accounts.UserWalletAccountGateway;
-import io.bensing.ledger.kernel.LedgerGateway;
 
 import io.bensing.kernel.Outcome;
 import io.bensing.kernel.SuccessfulOutcome;
@@ -29,18 +26,18 @@ public class CashDeposit implements Outcome {
     }
 
     // TODO - Create a CashDeposit slip as the argument for Deposit; add validations to it.
-    public DepositReceipt Deposit(long userId, double money, String currency) {
+    public DepositReceipt Deposit(long userId, double amount, String currency) {
+
         var transactionId = this.identityGateway.GenerateId();
         var transactionDateAndTime = Instant.now().toEpochMilli();
         var userWalletAccount = this.userWalletAccountGateway.RetrieveAccount(userId);
         var description = "Cash deposit into user waller " + userWalletAccount;
-        // TODO - Create a JournalEntry object that takes in the Debit, Credit, TransactionId, & Description
-        var userWalletCredit = new Credit(description, transactionId, userWalletAccount, money, transactionDateAndTime);
-        var cashAccountDebit = new Debit(description, transactionId, this.cashAccount, money, transactionDateAndTime);
 
-        var ledgerResponse = this.ledgerGateway.MakeEntry(cashAccountDebit, userWalletCredit);
+        var journalEntry = new JournalEntry(description, transactionId, transactionDateAndTime, amount, userWalletAccount, this.cashAccount);
 
-        return createReceipt(userId, money, currency, transactionId, transactionDateAndTime, ledgerResponse);
+        var ledgerResponse = this.ledgerGateway.MakeEntry(journalEntry);
+
+        return createReceipt(userId, amount, currency, transactionId, transactionDateAndTime, ledgerResponse);
 
     }
 

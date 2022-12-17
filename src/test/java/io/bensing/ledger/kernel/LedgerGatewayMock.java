@@ -13,7 +13,7 @@ public class LedgerGatewayMock implements LedgerGateway {
         this.expectedOutcome = expectedOutcome;
     }
     @Override
-    public Outcome MakeEntry(Debit debit, Credit credit) {
+    public Outcome MakeEntry(JournalEntry journalEntry) {
         return this.expectedOutcome;
     }
 
