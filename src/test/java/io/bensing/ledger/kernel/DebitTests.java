@@ -28,4 +28,60 @@ public class DebitTests {
         Assertions.assertEquals(25.00, debit.Amount());
         Assertions.assertEquals(223423453, debit.DateAndTime());
     }
+
+    @Test
+    @Tag("Small")
+    @DisplayName("Two same debits equal each other.")
+    public void TwoDebitsEqual() {
+
+        var debit1 = new Debit("Transfer into account 1234",
+                new Id(1234234534), new Account(1234), 25.00, 1L);
+        var debit2 = new Debit("Transfer into account 1234",
+                new Id(1234234534), new Account(1234), 25.00, 1L);
+
+        Assertions.assertTrue(debit1.Equals(debit2));
+
+    }
+
+    @Test
+    @Tag("Small")
+    @DisplayName("Two different debits do not equal each other.")
+    public void TwoDifferentDebitsDoNotEqual() {
+
+        var debit1 = new Debit("Message 1",
+                new Id(1L), new Account(1234), 25.00, 1L);
+        var debit2 = new Debit("Message 2",
+                new Id(1L), new Account(1234), 25.00, 1L);
+
+        Assertions.assertFalse(debit1.Equals(debit2), "The two different debits descriptions should not equate");
+
+        debit1 = new Debit("Transfer into account 1234",
+                new Id(1L), new Account(1234), 25.00, 1L);
+        debit2 = new Debit("Transfer into account 1234",
+                new Id(2L), new Account(1234), 25.00, 1L);
+
+        Assertions.assertFalse(debit1.Equals(debit2), "The two different debits transaction ids should not equate");
+
+        debit1 = new Debit("Transfer into account 1234",
+                new Id(1L), new Account(3L), 25.00, 1L);
+        debit2 = new Debit("Transfer into account 1234",
+                new Id(1L), new Account(4L), 25.00, 1L);
+
+        Assertions.assertFalse(debit1.Equals(debit2), "The two different debit account numbers should not equate");
+
+        debit1 = new Debit("Transfer into account 1234",
+                new Id(1L), new Account(3L), 30.00, 1L);
+        debit2 = new Debit("Transfer into account 1234",
+                new Id(1L), new Account(3L), 25.00, 1L);
+
+        Assertions.assertFalse(debit1.Equals(debit2), "The two different debit amounts should not equate");
+
+        debit1 = new Debit("Transfer into account 1234",
+                new Id(1L), new Account(3L), 25.00, 5L);
+        debit2 = new Debit("Transfer into account 1234",
+                new Id(1L), new Account(3L), 25.00, 6L);
+
+        Assertions.assertFalse(debit1.Equals(debit2), "The two different debit date & times should not equate");
+
+    }
 }

@@ -1,8 +1,9 @@
 package io.bensing.ledger.kernel;
 
 import io.bensing.kernel.identity.Id;
+import io.bensing.kernel.interfaces.Comparable;
 
-public class Debit {
+public class Debit implements Comparable<Debit> {
 
     private String description;
     private Id transactionId;
@@ -36,5 +37,14 @@ public class Debit {
 
     public long DateAndTime() {
         return this.dateAndTime;
+    }
+
+    public boolean Equals(Debit compareDebit) {
+        var desc = this.Description().equals(compareDebit.Description());
+        var transId = this.TransactionId().Equals(compareDebit.TransactionId());
+        var acct = this.Account().Equals(compareDebit.Account());
+        var amt = this.Amount() == compareDebit.Amount();
+        var dateTime = this.DateAndTime() == compareDebit.DateAndTime();
+        return desc && transId && acct && amt && dateTime;
     }
 }
