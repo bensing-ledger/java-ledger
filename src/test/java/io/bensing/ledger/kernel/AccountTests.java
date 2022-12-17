@@ -15,8 +15,9 @@ public class AccountTests {
 
         var account = new Account(1L);
 
-        Assertions.assertEquals(1L, account.Value());
-        Assertions.assertTrue(new Id(1L).Equals(account.Number()));
+        Assertions.assertTrue(account.IsValid(), "Expected the account to be valid.");
+        Assertions.assertEquals(1L, account.Value(), "The Account value is not what was expected.");
+        Assertions.assertTrue(new Id(1L).Equals(account.Number()), "The Account number is what was expected.");
     }
 
     @Test
@@ -39,5 +40,18 @@ public class AccountTests {
         var account2 = new Account(2L);
 
         Assertions.assertFalse(account1.Equals(account2));
+    }
+
+    @Test
+    @Tag("Small")
+    @DisplayName("Create an invalid account value object")
+    public void CreateAnInvalidAccount() {
+
+        var account = new Account(0L);
+
+        var expectedMessage = "The account number must be greater than 0.";
+        Assertions.assertFalse(account.IsValid(), "Expected the account to be valid.");
+        Assertions.assertEquals(expectedMessage, account.ValidationMessage(), "The expected validation message was not returned.");
+
     }
 }

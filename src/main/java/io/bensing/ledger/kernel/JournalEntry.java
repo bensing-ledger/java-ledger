@@ -11,6 +11,7 @@ public class JournalEntry {
     private final Debit debit;
     private Id transactionId;
 
+    // TODO - add a validation object to this to validate the incoming arguments are valid.
     public JournalEntry(String description, Id transId, long dateAndTime, double amount, Account creditAcct, Account debitAcct) {
         this.description = description;
         this.transactionId = transId;

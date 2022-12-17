@@ -11,6 +11,8 @@ public class Debit implements Comparable<Debit> {
     private double amount;
     private long dateAndTime;
 
+    // TODO - add a validation object to this to validate the incoming arguments are valid.
+
     public Debit(String description, Id transactionId, Account account, double amount, long dateAndTime) {
         this.description = description;
         this.transactionId = transactionId;

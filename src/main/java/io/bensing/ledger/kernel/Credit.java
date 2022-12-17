@@ -11,6 +11,8 @@ public class Credit implements Comparable<Credit> {
     private final double amount;
     private final long dateAndTime;
 
+    // TODO - add a validation object to this to validte the incoming arguments are valid.
+
     public Credit(String description, Id transactionId, Account account, double amount, long dateAndTime) {
         this.description = description;
         this.transactionId = transactionId;
