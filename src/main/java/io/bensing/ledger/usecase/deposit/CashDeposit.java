@@ -26,6 +26,7 @@ public class CashDeposit implements Outcome {
     }
 
     // TODO - Create a CashDeposit slip as the argument for Deposit; add validations to it.
+    // TODO - DECISION - A) Take the transaction date as an input of th CashDeposit slip, OR create it automatically as part of the Depoist(..)
     public DepositReceipt Deposit(long userId, double amount, String currency) {
 
         var transactionId = this.identityGateway.GenerateId();
