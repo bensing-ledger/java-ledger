@@ -8,7 +8,6 @@ import io.bensing.kernel.interfaces.Validatable;
 
 import java.util.ArrayList;
 
-// TODO - LEFT OFF HERE - Update validations to reflect the new kernel version
 public class Account implements ValueObject<Long>, Comparable<Account>, Validatable {
 
     private final Id accountNumber;

@@ -66,11 +66,11 @@ public class Credit implements Comparable<Credit>, Validatable {
         validateDescription(this.validation);
     }
 
-    // TODO - LEFT OFF HERE - Update validations to reflect the new kernel version
     private void validateDescription(Validation validation) {
         if (this.description.Value().length() != 0){ return; }
         validation.AddMessage("Please provide a credit description.");
     }
+
     private void validateAccount(Validation validation) {
         if (this.account.IsValid()) { return; }
         var message = "The account number is invalid.";
