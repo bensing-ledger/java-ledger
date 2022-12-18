@@ -83,5 +83,21 @@ public class CreditTests {
 
     }
 
+    @Test
+    @Tag("Small")
+    @DisplayName("Create an invalid Credit with an bad Account")
+    public void CreateInvalidCredit_FromInvalidAccount() {
 
+        String description = "Transfer into account 1234";
+        var transactionId = new Id(1234234534);
+        var account = new Account(0L);
+        double amount = 25.00;
+        long dateAndTime = 223423453;
+
+        var credit = new Credit(description, transactionId, account, amount, dateAndTime);
+
+        Assertions.assertFalse(credit.IsValid(), "Expected the credit to not be valid.");
+        Assertions.assertTrue(credit.ValidationMessages().contains("The account number is invalid."),
+                "The expected an invalid account number message was not provided. \n" + credit.ValidationMessages().toString());
+    }
 }

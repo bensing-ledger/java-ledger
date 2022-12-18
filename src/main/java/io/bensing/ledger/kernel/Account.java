@@ -6,14 +6,17 @@ import io.bensing.kernel.interfaces.Comparable;
 import io.bensing.kernel.interfaces.ValueObject;
 import io.bensing.kernel.interfaces.Validatable;
 
+import java.util.ArrayList;
+
+// TODO - LEFT OFF HERE - Update validations to reflect the new kernel version
 public class Account implements ValueObject<Long>, Comparable<Account>, Validatable {
 
     private final Id accountNumber;
     private Validation validation;
 
     public Account(long accountNumber) {
-        this.validate(accountNumber);
         this.accountNumber = new Id(accountNumber);
+        this.validate();
     }
 
     public Long Value() {
@@ -26,20 +29,20 @@ public class Account implements ValueObject<Long>, Comparable<Account>, Validata
         return this.accountNumber.Equals(compareAccount.Number());
     }
     public boolean IsValid() {
-        return this.validation.isValid();
+        return this.validation.IsValid();
     }
-    public String ValidationMessage() {
-        return this.validation.getValidationMessage();
+    public boolean IsInvalid() {
+        return this.validation.IsInvalid();
+    }
+    public ArrayList<String> ValidationMessages() {
+        return this.validation.ValidationMessages();
     }
 
-    private void validate(long accountNumber) {
-        var validation = new Validation();
-        if (accountNumber > 0){
-            validation.setAsValid();
-        } else {
-            validation.setAsInvalid("The account number must be greater than 0.");
+    private void validate() {
+        this.validation = new Validation();
+        if (this.accountNumber.Value() <= 0) {
+            this.validation.AddMessage("The account number must be greater than 0.");
         }
-        this.validation = validation;
     }
 
 }

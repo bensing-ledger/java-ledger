@@ -51,7 +51,7 @@ public class AccountTests {
 
         var expectedMessage = "The account number must be greater than 0.";
         Assertions.assertFalse(account.IsValid(), "Expected the account to be valid.");
-        Assertions.assertEquals(expectedMessage, account.ValidationMessage(), "The expected validation message was not returned.");
+        Assertions.assertTrue(account.ValidationMessages().contains(expectedMessage), "The expected validation message was not present.");
 
     }
 }
