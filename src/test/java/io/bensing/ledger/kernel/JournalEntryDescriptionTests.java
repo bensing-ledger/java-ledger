@@ -34,4 +34,24 @@ public class JournalEntryDescriptionTests {
         Assertions.assertEquals("", description.Value(),
                 "The expected value was not returned.");
     }
+
+    @Test
+    @Tag("Small")
+    @DisplayName("Two (2) same journal entry descriptions must equal each other.")
+    public void TwoSameJournalEntryDescriptionsEqual() {
+        var desc1 = new JournalEntryDescription("Some Description");
+        var desc2 = new JournalEntryDescription("Some Description");
+
+        Assertions.assertTrue(desc1.Equals(desc2));
+    }
+
+    @Test
+    @Tag("Small")
+    @DisplayName("Two (2) different journal entry descriptions must NOT EQUAL each other.")
+    public void TwoDifferentJournalEntryDescriptionsDoNotEqual() {
+        var desc1 = new JournalEntryDescription("Some Description");
+        var desc2 = new JournalEntryDescription("Some Different Description");
+
+        Assertions.assertFalse(desc1.Equals(desc2));
+    }
 }
