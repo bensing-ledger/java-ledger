@@ -18,7 +18,6 @@ public class JournalEntryId implements ValueObject<Long>, Validatable, Comparabl
         this.validate();
     }
 
-    // TODO - JournalEntryId(Id id)
     public JournalEntryId(Id id) {
         this.id = id;
         this.validate();
