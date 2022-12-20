@@ -1,32 +1,31 @@
 package io.bensing.ledger.kernel;
 
-import io.bensing.kernel.identity.Id;
 import io.bensing.kernel.interfaces.Comparable;
 
 public class Debit implements Comparable<Debit> {
 
-    private String description;
-    private Id transactionId;
-    private Account account;
-    private double amount;
-    private long dateAndTime;
+    private final JournalEntryDescription description;
+    private final JournalEntryId journalEntryId;
+    private final Account account;
+    private final double amount;
+    private final long dateAndTime;
 
     // TODO - add a validation object to this to validate the incoming arguments are valid.
 
-    public Debit(String description, Id transactionId, Account account, double amount, long dateAndTime) {
+    public Debit(JournalEntryDescription description, JournalEntryId journalEntryId, Account account, double amount, long dateAndTime) {
         this.description = description;
-        this.transactionId = transactionId;
+        this.journalEntryId = journalEntryId;
         this.account = account;
         this.amount = amount;
         this.dateAndTime = dateAndTime;
     }
 
-    public String Description() {
+    public JournalEntryDescription Description() {
         return this.description;
     }
 
-    public Id TransactionId() {
-        return this.transactionId;
+    public JournalEntryId EntryId() {
+        return this.journalEntryId;
     }
 
     public Account Account() {
@@ -42,8 +41,8 @@ public class Debit implements Comparable<Debit> {
     }
 
     public boolean Equals(Debit compareDebit) {
-        var desc = this.Description().equals(compareDebit.Description());
-        var transId = this.TransactionId().Equals(compareDebit.TransactionId());
+        var desc = this.Description().Equals(compareDebit.Description());
+        var transId = this.EntryId().Equals(compareDebit.EntryId());
         var acct = this.Account().Equals(compareDebit.Account());
         var amt = this.Amount() == compareDebit.Amount();
         var dateTime = this.DateAndTime() == compareDebit.DateAndTime();
