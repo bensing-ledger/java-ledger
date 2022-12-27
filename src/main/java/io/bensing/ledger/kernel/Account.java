@@ -11,17 +11,12 @@ import java.util.ArrayList;
 public class Account implements ValueObject<Long>, Comparable<Account>, Validatable {
 
     private final Id accountNumber;
-    private AccountType accountType;
+    private final AccountType accountType;
     private Validation validation;
 
     public Account(long accountNumber, AccountType accountType) {
-        this(accountNumber);
-        this.accountType = accountType;
-    }
-
-    // TODO - find all usages and update to the new constructor
-    public Account(long accountNumber) {
         this.accountNumber = new Id(accountNumber);
+        this.accountType = accountType;
         this.validate();
     }
 
