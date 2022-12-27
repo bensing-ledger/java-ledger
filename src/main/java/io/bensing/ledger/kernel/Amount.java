@@ -7,7 +7,7 @@ import io.bensing.kernel.interfaces.ValueObject;
 
 import java.util.ArrayList;
 
-public class Amount implements ValueObject<Double>, Validatable {
+public class Amount implements ValueObject<Double>, Validatable, Comparable<Amount> {
 
     private final double amount;
     private Validation validation;
@@ -34,10 +34,11 @@ public class Amount implements ValueObject<Double>, Validatable {
     public boolean IsInvalid() {
         return this.validation.IsInvalid();
     }
-
-    @Override
     public ArrayList<String> ValidationMessages() {
         return this.validation.ValidationMessages();
+    }
+    public boolean Equals(Amount amount) {
+        return this.amount == amount.Value();
     }
 }
 
