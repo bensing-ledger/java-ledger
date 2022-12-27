@@ -2,8 +2,6 @@ package io.bensing.ledger.kernel;
 
 import io.bensing.kernel.interfaces.Comparable;
 
-import java.util.Objects;
-
 public class Credit implements Comparable<Credit> {
 
     private final Account account;
@@ -14,15 +12,15 @@ public class Credit implements Comparable<Credit> {
         this.amount = amount;
     }
 
-    public long Account() {
-        return this.account.Value();
+    public Account Account() {
+        return this.account;
     }
-    public double Amount() {
-        return this.amount.Value();
+    public Amount Amount() {
+        return this.amount;
     }
     public boolean Equals(Credit credit) {
-        var sameAccount = Objects.equals(credit.Account(), this.Account());
-        var sameAmount = Objects.equals(credit.Amount(), this.Amount());
+        var sameAccount = this.Account().Equals(credit.Account());
+        var sameAmount = this.amount.Equals(credit.Amount());
         return sameAccount && sameAmount;
     }
 }
