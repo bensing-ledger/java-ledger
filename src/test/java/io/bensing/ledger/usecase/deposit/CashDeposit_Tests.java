@@ -5,6 +5,7 @@ import io.bensing.kernel.UnsuccessfulOutcome;
 import io.bensing.kernel.identity.Id;
 import io.bensing.ledger.IdentityGatewayMock;
 import io.bensing.ledger.kernel.Account;
+import io.bensing.ledger.kernel.AccountType;
 import io.bensing.ledger.usecase.chart_of_accounts.UserWalletAccountGatewayMock;
 import io.bensing.ledger.kernel.LedgerGatewayMock;
 import org.junit.jupiter.api.Assertions;
@@ -24,7 +25,7 @@ public class CashDeposit_Tests {
         String currency = "USD";
 
         var identityGateway = new IdentityGatewayMock(new Id(2L));
-        var userWalletAccountGateway = new UserWalletAccountGatewayMock(new Account(234232342));
+        var userWalletAccountGateway = new UserWalletAccountGatewayMock(new Account(234232342, AccountType.Liability));
         var ledgerGateway = new LedgerGatewayMock(new SuccessfulOutcome());
         var usecase = new CashDeposit(identityGateway, userWalletAccountGateway, ledgerGateway);
 
@@ -60,7 +61,7 @@ public class CashDeposit_Tests {
         String currency = "USD";
 
         var identityGateway = new IdentityGatewayMock(new Id(2L));
-        var userWalletAccountGateway = new UserWalletAccountGatewayMock(new Account(234232342));
+        var userWalletAccountGateway = new UserWalletAccountGatewayMock(new Account(234232342, AccountType.Liability));
         var ledgerGateway = new LedgerGatewayMock(new UnsuccessfulOutcome("Some issue with ledger."));
         var usecase = new CashDeposit(identityGateway, userWalletAccountGateway, ledgerGateway);
 
