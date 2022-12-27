@@ -14,15 +14,15 @@ public class Debit implements Comparable<Debit> {
         this.amount = amount;
     }
 
-    public long Account() {
-        return this.account.Value();
+    public Account Account() {
+        return this.account;
     }
-    public double Amount() {
-        return this.amount.Value();
+    public Amount Amount() {
+        return this.amount;
     }
     public boolean Equals(Debit debit) {
-        var sameAccount = Objects.equals(debit.Account(), this.Account());
-        var sameAmount = Objects.equals(debit.Amount(), this.Amount());
+        var sameAccount = this.account.Equals(debit.Account());
+        var sameAmount = this.amount.Equals(debit.Amount());
         return sameAccount && sameAmount;
     }
 }
