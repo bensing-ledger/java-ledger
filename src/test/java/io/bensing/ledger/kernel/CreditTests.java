@@ -1,5 +1,6 @@
 package io.bensing.ledger.kernel;
 
+import io.bensing.ledger.jupiter.SmallTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -8,8 +9,7 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Credit - Positive & Negative")
 public class CreditTests {
 
-    @Test
-    @Tag("Small")
+    @SmallTest
     @DisplayName("Create a Credit")
     public void CreateCredit() {
 
@@ -25,8 +25,7 @@ public class CreditTests {
 
     }
 
-    @Test
-    @Tag("Small")
+    @SmallTest
     @DisplayName("Two same credits equal each other.")
     public void TwoCreditsEqual() {
 
@@ -37,8 +36,7 @@ public class CreditTests {
 
     }
 
-    @Test
-    @Tag("Small")
+    @SmallTest
     @DisplayName("Two different credits do not equal each other.")
     public void TwoDifferentCreditsDoNotEqual() {
 
