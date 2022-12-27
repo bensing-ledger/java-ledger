@@ -13,7 +13,7 @@ import java.time.Instant;
 
 public class CashDeposit implements Outcome {
 
-    private final Account cashAccount = new Account(101);
+    private final Account cashAccount = new Account(101, AccountType.Asset);
     private final LedgerGateway ledgerGateway;
     private final UserWalletAccountGateway userWalletAccountGateway;
     private final IdentityGateway identityGateway;
@@ -34,6 +34,7 @@ public class CashDeposit implements Outcome {
         var userWalletAccount = this.userWalletAccountGateway.RetrieveAccount(userId);
         var description = "Cash deposit into user waller " + userWalletAccount;
 
+        // TODO - Create journal entry constructor which does not need the date/time; make it an assumption of this new constructor that the date is generated at construction.
         var journalEntry = new JournalEntry(description, transactionId, transactionDateAndTime, amount, userWalletAccount, this.cashAccount);
 
         var ledgerResponse = this.ledgerGateway.MakeEntry(journalEntry);
